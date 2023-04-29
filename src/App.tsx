@@ -2,9 +2,13 @@ import Login from "./pages/Login";
 
 function App() {
   return (
-    <>
-      <Login/>
-    </>
+    <div className=" overflow-hidden h-screen">
+      <h1 className="text-center mt-10 font-bold text-6xl text-[#5f6ac4]">
+        MailApp
+      </h1>
+
+      <Login />
+    </div>
   );
 }
 
