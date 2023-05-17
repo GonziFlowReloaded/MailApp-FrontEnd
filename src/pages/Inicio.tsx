@@ -1,6 +1,11 @@
 import Bandeja from "../components/Bandeja";
+import useMail from "../hooks/useMail";
 
 const Inicio = () => {
+  //@ts-ignore
+  const { hola } = useMail();
+
+  console.log(hola);
   return (
     <>
       <div className="md:flex ">
@@ -77,7 +82,7 @@ const Inicio = () => {
             <span className="text-3xl font-semibold">Asunto del mensaje</span>
             <p className="text-sm font-semibold text-gray-400">
               12 de Julio de 2021
-            </p> 
+            </p>
           </div>
 
           <div className="px-4 py-2">
@@ -87,8 +92,6 @@ const Inicio = () => {
               rerum ullam blanditiis quasi delectus modi suscipit. Nulla animi
               rem mollitia sit.
             </p>
-
-            
           </div>
         </div>
       </div>
