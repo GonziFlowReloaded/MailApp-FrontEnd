@@ -1,25 +1,52 @@
 import { createBrowserRouter } from "react-router-dom";
+import Layout from "./layout/Layout";
+import AuthLayout from "./layout/AuthLayout";
+import Inicio from "./pages/Inicio";
 import Login from "./pages/Login";
-import Layout from "./layouts/Layout";
+import Register from "./pages/Register";
+import Contactos from "./pages/Contactos";
+import Ajustes from "./pages/Ajustes";
 
-import MailManager from "./pages/MailManager";
-
-const Router = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     children: [
       {
-        path: "/mail",
-        element: <MailManager />,
+        index: true,
+        element: <Inicio />,
       },
+
+      {
+        path: "/contactos",
+        element: <Contactos />,
+      },
+
+      {
+        path: "/ajustes",
+        element: <Ajustes />,
+        
+      },
+
+      
     ],
   },
 
   {
-    path: "/login",
-    element: <Login />,
+    path: "/auth",
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "/auth/login",
+        element: <Login />,
+      },
+
+      {
+        path: "/auth/register",
+        element: <Register />,
+      },
+    ],
   },
 ]);
 
-export default Router;
+export default router;
