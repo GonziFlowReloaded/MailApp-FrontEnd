@@ -2,36 +2,42 @@ const Contactos = () => {
   return (
     <>
       <div className="h-screen overflow-hidden p-3">
-        <div className="bg-white  w-full  h-full rounded-2xl shadow-md p-5  ">
+        <div className="bg-white  w-full  h-full rounded-2xl shadow-md p-5  dark:bg-gray-800">
           <div className="">
             <table className="table-auto w-full">
               <thead>
                 <tr className=" text-gray-600 uppercase text-sm leading-normal">
-                  <th className="py-3 px-6 text-left">Nombre</th>
-                  <th className="py-3 px-6 text-left">Apellido</th>
-                  <th className="py-3 px-6 text-left">Email</th>
-                  <th className="py-3 px-6 text-left">Acciones</th>
+                  <th className="py-3 px-6 text-left dark:text-white"> Nombre</th>
+                  <th className="py-3 px-6 text-left dark:text-white">Apellido</th>
+                  <th className="py-3 px-6 text-left dark:text-white">Email</th>
+                  <th className="py-3 px-6 text-left dark:text-white">Acciones</th>
                 </tr>
               </thead>
               <tbody className="text-gray-600 text-sm font-light">
-                <tr className="border-b border-gray-200 hover:bg-gray-100">
+                <tr className="border-b border-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">
                   <td className="py-3 px-6 text-left whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="w-8 h-8 flex justify-center items-center text-white font-semibold bg-violet-500 rounded-full mr-2">
                         FA
                       </div>
-                      <span className="font-medium">Fernando</span>
+                      <span className="font-medium text-gray-800 dark:text-white">
+                        Francisco
+                      </span>
                     </div>
                   </td>
                   <td className="py-3 px-6 text-left">
                     <div className="flex items-center">
-                      <span className="font-medium">Aragón</span>
+                      <span className="font-medium text-gray-800 dark:text-white">
+                        Araya
+                      </span>
                     </div>
                   </td>
 
                   <td className="py-3 px-6 text-left">
                     <div className="flex items-center">
-                      <span className="font-medium">fer@gmail.com</span>
+                      <span className="font-medium text-gray-800 dark:text-white">
+                        franaraya@gmail.com
+                      </span>
                     </div>
                   </td>
                   <td className="py-3 px-6 text-left">

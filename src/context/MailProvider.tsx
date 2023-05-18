@@ -9,9 +9,11 @@ const MailContext = createContext();
 const MailProvider = ({ children }: any) => {
   const [bandeja, setBandeja] = useState(bandejaDB);
 
-  console.log(bandeja);
+  
 
-  return <MailContext.Provider value={{}}>{children}</MailContext.Provider>;
+  return <MailContext.Provider value={{
+    bandeja,
+  }}>{children}</MailContext.Provider>;
 };
 
 export { MailProvider };

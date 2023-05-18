@@ -3,31 +3,32 @@ import useMail from "../hooks/useMail";
 
 const Inicio = () => {
   //@ts-ignore
-  const { hola } = useMail();
+  const { bandeja } = useMail();
 
-  console.log(hola);
+  console.log(bandeja);
   return (
     <>
       <div className="md:flex ">
-        <div className="bg-gray-100 md:w-1/4 h-screen overflow-y-scroll">
-          <Bandeja />
-          <Bandeja />
-          <Bandeja />
-          <Bandeja />
-          <Bandeja />
-          <Bandeja />
+        <div className="bg-gray-100 md:w-1/4 h-screen overflow-y-scroll dark:bg-gray-700 transition duration-500 ease-in-out">
+          {bandeja.map((item: any) => (
+            <Bandeja key={item.id} {...item} />
+          ))}
         </div>
 
-        <div className="flex-1 m-5 bg-white rounded-2xl shadow-md">
+        <div className="flex-1 m-5 bg-white rounded-2xl shadow-md  dark:bg-gray-800 transition duration-500 ease-in-out p-5">
           <div className="flex justify-between items-center px-4 py-2">
             <div className="flex items-center">
-              <div className="w-10 h-10 flex justify-center items-center text-white font-semibold bg-violet-500 rounded-full mr-2">
+              <div className="w-10 h-10 flex justify-center items-center text-white font-semibold bg-violet-500 rounded-full mr-2  dark:text-white">
                 FA
               </div>
 
               <div className="flex flex-col">
-                <span className="text-sm font-semibold">Fernando Aragón</span>
-                <span className="text-xs text-gray-400">Hace 2 horas</span>
+                <span className="text-sm font-semibold text-gray-700 dark:text-white">
+                  Fernando Aragón
+                </span>
+                <span className="text-xs text-gray-400 dark:text-gray-300">
+                  12 de Julio de 2021
+                </span>
               </div>
             </div>
             <div className="flex gap-4 justify-center items-center">
@@ -79,20 +80,40 @@ const Inicio = () => {
           </div>
 
           <div className="px-4 py-2 flex justify-between items-center ">
-            <span className="text-3xl font-semibold">Asunto del mensaje</span>
-            <p className="text-sm font-semibold text-gray-400">
+            <span className="text-3xl font-semibold dark:text-white">
+              {" "}
+              Asunto del mensaje
+            </span>
+            <p className="text-sm font-semibold text-gray-400 dark:text-white">
               12 de Julio de 2021
             </p>
           </div>
 
           <div className="px-4 py-2">
-            <p className="text-sm font-semibold text-gray-800 px-4 py-2">
+            <p className="text-sm font-semibold text-gray-800 px-4 py-2 dark:text-white">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
               fugit distinctio eos quod porro necessitatibus, id quisquam minima
               rerum ullam blanditiis quasi delectus modi suscipit. Nulla animi
               rem mollitia sit.
             </p>
           </div>
+          <p className=" flex items-center text-sm font-semibold text-blue-400 px-4 py-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6 mr-2"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3"
+              />
+            </svg>
+            <span>Responder a Fernando Aragón</span>
+          </p>
         </div>
       </div>
     </>

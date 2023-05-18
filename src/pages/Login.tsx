@@ -1,11 +1,25 @@
+import google from "../assets/img/google.svg";
+import facebook from "../assets/img/facebook.svg";
+import { Link, useNavigate } from "react-router-dom";
+
 const Login = () => {
+  const navigate = useNavigate();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    navigate("/");
+  };
+
   return (
-    <div className="bg-white h-[500px] w-[500px] rounded-2xl shadow-md ">
+    <div className="bg-white h-[550px] w-[500px] rounded-2xl shadow-md ">
       <h1 className="text-3xl font-bold text-center text-[#2e8efd] mt-5">
         Iniciar Sesion
       </h1>
 
-      <form className="bg-white rounded px-8 pt-6 pb-8 mb-4">
+      <form
+        className="bg-white rounded px-8 pt-6 pb-8 mb-4"
+        onSubmit={handleSubmit}
+      >
         <div className="mb-10">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
@@ -37,7 +51,7 @@ const Login = () => {
         </div>
 
         <div className="flex justify-end mt-3">
-          <a href="#" className="text-[#2e8efd] hover:text-[#2e8efd] text-sm" >
+          <a href="#" className="text-[#2e8efd] hover:text-[#2e8efd] text-sm">
             ¿Olvidaste tu contraseña?
           </a>
         </div>
@@ -51,9 +65,21 @@ const Login = () => {
           </button>
         </div>
 
-        <div className="flex justify-center mt-5 gap-3 ">
-          <a href="#" className="bg-blue-500 py-2 px-3 font-bold text-xl rounded-full text-white">F</a>
-          <a href="#" className="bg-red-500 py-2 px-3 font-bold text-xl rounded-full text-white">G</a>
+        <div className="flex justify-center mt-5">
+          <p className="text-sm">
+            ¿No tienes una cuenta?{" "}
+            <Link
+              to="/auth/register"
+              className="text-[#2e8efd] hover:text-[#2e8efd]"
+            >
+              Registrate
+            </Link>
+          </p>
+        </div>
+
+        <div className="flex items-center justify-center mt-5 gap-3 ">
+          <img src={google} alt="" className="w-7" />
+          <img src={facebook} alt="" className="w-8" />
         </div>
       </form>
     </div>
