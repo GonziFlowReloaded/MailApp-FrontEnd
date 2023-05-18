@@ -2,11 +2,11 @@ import Bandeja from "../components/Bandeja";
 import Mensaje from "../components/Mensaje";
 import useMail from "../hooks/useMail";
 
+
 const Inicio = () => {
   //@ts-ignore
-  const { bandeja } = useMail();
+  const { bandeja, mensajeActual } = useMail();
 
-  console.log(bandeja);
   return (
     <>
       <div className="md:flex h-screen ">
@@ -16,7 +16,7 @@ const Inicio = () => {
           ))}
         </div>
 
-        <Mensaje />
+        <Mensaje mensajeActual={mensajeActual} />
       </div>
     </>
   );

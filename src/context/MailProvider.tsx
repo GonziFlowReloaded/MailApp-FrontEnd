@@ -8,12 +8,24 @@ const MailContext = createContext();
 
 const MailProvider = ({ children }: any) => {
   const [bandeja, setBandeja] = useState(bandejaDB);
+  const [mensajeActual, setMensajeActual] = useState(bandejaDB[0]);
 
-  
+  const handleClickMensaje = (id: number) => {
+    const mensaje = bandeja.find((item: any) => item.id === id);
+    setMensajeActual(mensaje);
+  };
 
-  return <MailContext.Provider value={{
-    bandeja,
-  }}>{children}</MailContext.Provider>;
+  return (
+    <MailContext.Provider
+      value={{
+        bandeja,
+        mensajeActual,
+        handleClickMensaje,
+      }}
+    >
+      {children}
+    </MailContext.Provider>
+  );
 };
 
 export { MailProvider };
