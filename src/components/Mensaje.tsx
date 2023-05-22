@@ -10,15 +10,15 @@ const Mensaje = ({ mensajeActual }) => {
           <div
             className={`w-10 h-10 flex justify-center items-center text-white font-semibold rounded-full mr-2 dark:text-white bg-violet-400 dark:bg-violet-400`}
           >
-            {mensajeActual.sender?.[0]}
+            {mensajeActual?.sender?.[0]}
           </div>
 
           <div className="flex flex-col">
             <span className="text-sm font-semibold text-gray-700 dark:text-white">
-              {mensajeActual.sender}
+              {mensajeActual?.sender}
             </span>
             <span className="text-xs text-gray-400 dark:text-gray-300">
-              {mensajeActual.date}
+              {mensajeActual?.date}
             </span>
           </div>
         </div>
@@ -72,16 +72,16 @@ const Mensaje = ({ mensajeActual }) => {
 
       <div className="px-4 py-2 flex justify-between items-center ">
         <span className="text-3xl font-semibold dark:text-white">
-          {mensajeActual.subject}
+          {mensajeActual?.subject}
         </span>
         <p className="text-sm font-semibold text-gray-400 dark:text-white">
-          {mensajeActual.date}
+          {mensajeActual?.date}
         </p>
       </div>
 
       <div className="px-4 py-2">
         <p className="text-sm font-semibold text-gray-800 px-4 py-2 dark:text-white">
-          {mensajeActual.body}
+          {mensajeActual?.body}
         </p>
       </div>
       <p className=" flex items-center text-sm font-semibold text-blue-400 px-4 py-2">
@@ -99,7 +99,7 @@ const Mensaje = ({ mensajeActual }) => {
             d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3"
           />
         </svg>
-        <span>Responder a {mensajeActual.sender}</span>
+        <span>Responder a {mensajeActual?.sender}</span>
       </p>
     </div>
   );
