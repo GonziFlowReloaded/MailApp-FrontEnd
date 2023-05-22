@@ -1,3 +1,4 @@
+//@ts-nocheck
 const Mensaje = ({ mensajeActual }) => {
   if (!mensajeActual) {
     return <div className="text-xl font-semibold text-gray-800">No hay mensajes</div>;

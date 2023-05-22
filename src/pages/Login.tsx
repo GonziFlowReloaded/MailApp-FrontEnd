@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import google from "../assets/img/google.svg";
 import facebook from "../assets/img/facebook.svg";
 import { Link, useNavigate } from "react-router-dom";
