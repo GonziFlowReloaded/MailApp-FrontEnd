@@ -2,7 +2,16 @@
 
 import useMail from "../hooks/useMail";
 
-const Bandeja = ({item}) => {
+interface Item{
+  id: number;
+  sender: string;
+  date: string;
+  subject: string;
+  body?: string;
+}
+
+
+const Bandeja = ({ item }: { item: Item }) => {
   //@ts-ignore
   const { handleClickMensaje, mensajeActual } = useMail();
 
