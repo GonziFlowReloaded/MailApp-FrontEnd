@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Redactar = () => {
   const [mail, setMail] = useState("");
   const [subject, setsubject] = useState("");
   const [body, setBody] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     const nombre = localStorage.getItem("nombre");
@@ -26,6 +29,8 @@ const Redactar = () => {
           nombre,
         }
       );
+
+      navigate("/");
 
       console.log(data);
     } catch (error) {

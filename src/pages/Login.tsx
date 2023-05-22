@@ -3,7 +3,7 @@ import facebook from "../assets/img/facebook.svg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
-import useAuth from "../hooks/useAuth";
+import useMail from "../hooks/useMail";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const { setAuth, auth } = useAuth();
+  const { setAuth, auth } = useMail();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,8 +31,10 @@ const Login = () => {
         }
       );
 
-      console.log(data);
       localStorage.setItem("nombre", data.nombre);
+
+      console.log(data);
+      
 
       setAuth(data);
       navigate("/");
@@ -54,9 +56,9 @@ const Login = () => {
         <div className="mb-10">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="email"
+            htmlFor="username"
           >
-            Email
+            Username
           </label>
           <input
             className="shadow appearance-none  rounded-2xl bg-gray-100 w-full  py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"

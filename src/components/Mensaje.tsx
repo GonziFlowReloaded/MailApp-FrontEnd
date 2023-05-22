@@ -1,19 +1,20 @@
-
-
 const Mensaje = ({ mensajeActual }) => {
+  if (!mensajeActual) {
+    return <div className="text-xl font-semibold text-gray-800">No hay mensajes</div>;
+  }
   return (
-    <div className="flex-1 m-5 bg-white rounded-2xl shadow-md  dark:bg-gray-800 transition duration-500 ease-in-out p-5">
+    <div className="flex-1 m-5 bg-white rounded-2xl shadow-md dark:bg-gray-800 transition duration-500 ease-in-out p-5">
       <div className="flex justify-between items-center px-4 py-2">
         <div className="flex items-center">
           <div
-            className={`w-10 h-10 flex justify-center items-center text-white font-semibold  rounded-full mr-2  dark:text-white bg-violet-400 dark:bg-violet-400`}
+            className={`w-10 h-10 flex justify-center items-center text-white font-semibold rounded-full mr-2 dark:text-white bg-violet-400 dark:bg-violet-400`}
           >
-            facu
+            {mensajeActual.sender?.[0]}
           </div>
 
           <div className="flex flex-col">
             <span className="text-sm font-semibold text-gray-700 dark:text-white">
-              facu
+              {mensajeActual.sender}
             </span>
             <span className="text-xs text-gray-400 dark:text-gray-300">
               {mensajeActual.date}
@@ -70,7 +71,6 @@ const Mensaje = ({ mensajeActual }) => {
 
       <div className="px-4 py-2 flex justify-between items-center ">
         <span className="text-3xl font-semibold dark:text-white">
-          {" "}
           {mensajeActual.subject}
         </span>
         <p className="text-sm font-semibold text-gray-400 dark:text-white">

@@ -41,7 +41,7 @@ const Register = () => {
       setPassword("");
       setRepeatPassword("");
 
-      console.log(alerta);
+      
     } catch (error) {
       console.log(error);
     }
@@ -56,9 +56,9 @@ const Register = () => {
         <div className="mb-10">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="email"
+            htmlFor="username"
           >
-            Email
+            Username
           </label>
           <input
             className="shadow appearance-none  rounded-2xl bg-gray-100 w-full  py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -90,13 +90,13 @@ const Register = () => {
         <div className="mb-5">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="password"
+            htmlFor="password2"
           >
             Confirmar Contraseña
           </label>
           <input
             className="shadow appearance-none  rounded-2xl bg-gray-100 w-full  py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="password"
+            id="password2"
             type="password"
             placeholder="******************"
             value={repeatPassword}

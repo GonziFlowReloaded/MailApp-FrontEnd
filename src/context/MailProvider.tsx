@@ -3,37 +3,34 @@ import axios from "axios";
 
 // @ts-ignore
 
-
 //@ts-ignore
 const MailContext = createContext();
 
 const MailProvider = ({ children }: any) => {
   const [bandeja, setBandeja] = useState([]);
   const [mensajeActual, setMensajeActual] = useState({});
+  const [auth, setAuth] = useState({});
 
   useEffect(() => {
-    const getMensajes = async () => {
+    const getBandeja = async () => {
       try {
-        const nombre = localStorage.getItem("nombre");
-
         const { data } = await axios.post(`${import.meta.env.VITE_URL}/buzon`, {
-          nombre,
+          nombre: localStorage.getItem("nombre"),
         });
 
         console.log(data);
 
-        setBandeja(data.emails);
-        console.log(data.emails[0]);
-        setMensajeActual(data.emails[0]);
+        setTimeout(() => {
+          setBandeja(data.emails);
+          setMensajeActual(data.emails[0]);
+        }, 1000); // Timeout de 5 segundos
       } catch (error) {
         console.log(error);
       }
     };
 
-    getMensajes();
+    getBandeja();
   }, []);
-
-  
 
   const handleClickMensaje = (id: number) => {
     const mensaje = bandeja.find((item: any) => item.id === id);
@@ -43,9 +40,11 @@ const MailProvider = ({ children }: any) => {
   return (
     <MailContext.Provider
       value={{
+        handleClickMensaje,
+        auth,
+        setAuth,
         bandeja,
         mensajeActual,
-        handleClickMensaje,
       }}
     >
       {children}
