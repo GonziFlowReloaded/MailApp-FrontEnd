@@ -56,7 +56,7 @@ const Bandeja = ({ item }: { item: Item }) => {
 
         <div className=" ">
           <p className="text-sm font-semibold text-gray-400 px-4 py-2 dark:text-gray-300 text-left ">
-            {item.body?.length > 10
+            {item.body && item.body.length > 10
               ? item.body?.slice(0, 100) + "..."
               : item.body}
           </p>
