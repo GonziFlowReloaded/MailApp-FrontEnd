@@ -1,13 +1,44 @@
 import google from "../assets/img/google.svg";
 import facebook from "../assets/img/facebook.svg";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
+import useAuth from "../hooks/useAuth";
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { setAuth, auth } = useAuth();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate("/");
+
+    if ([username, password].includes("")) {
+      console.log("Todos los campos son obligatorios");
+      return;
+    }
+
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_URL}/login`,
+
+        {
+          username,
+          password,
+        }
+      );
+
+      console.log(data);
+      localStorage.setItem("nombre", data.nombre);
+
+      setAuth(data);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -29,9 +60,11 @@ const Login = () => {
           </label>
           <input
             className="shadow appearance-none  rounded-2xl bg-gray-100 w-full  py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="email"
-            type="email"
-            placeholder="Email"
+            id="username"
+            type="text"
+            placeholder=" username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </div>
 
@@ -47,6 +80,8 @@ const Login = () => {
             id="password"
             type="password"
             placeholder="******************"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
 

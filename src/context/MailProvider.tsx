@@ -1,14 +1,39 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
+import axios from "axios";
 
 // @ts-ignore
-import { bandeja as bandejaDB } from "../data/bandeja.js";
+
 
 //@ts-ignore
 const MailContext = createContext();
 
 const MailProvider = ({ children }: any) => {
-  const [bandeja, setBandeja] = useState(bandejaDB);
-  const [mensajeActual, setMensajeActual] = useState(bandejaDB[0]);
+  const [bandeja, setBandeja] = useState([]);
+  const [mensajeActual, setMensajeActual] = useState({});
+
+  useEffect(() => {
+    const getMensajes = async () => {
+      try {
+        const nombre = localStorage.getItem("nombre");
+
+        const { data } = await axios.post(`${import.meta.env.VITE_URL}/buzon`, {
+          nombre,
+        });
+
+        console.log(data);
+
+        setBandeja(data.emails);
+        console.log(data.emails[0]);
+        setMensajeActual(data.emails[0]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getMensajes();
+  }, []);
+
+  
 
   const handleClickMensaje = (id: number) => {
     const mensaje = bandeja.find((item: any) => item.id === id);
