@@ -19,14 +19,14 @@ const MailProvider = ({ children }: any) => {
           nombre: localStorage.getItem("nombre"),
         });
 
-        console.log(data);
+       
 
-        setTimeout(() => {
+      
           setBandeja(data.emails);
           setMensajeActual(data.emails[0]);
-        }, 1000); // Timeout de 5 segundos
+        
       } catch (error) {
-        console.log(error);
+       
       }
     };
 

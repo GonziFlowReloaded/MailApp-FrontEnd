@@ -1,7 +1,15 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 
 const Layout = () => {
+  const navigate = useNavigate();
+  const nombre = localStorage.getItem("nombre");
+
+  if (!nombre) {
+    navigate("/auth/login");
+    return null;
+  }
+
   return (
     <>
       <div className="md:flex ">
@@ -16,3 +24,4 @@ const Layout = () => {
 };
 
 export default Layout;
+

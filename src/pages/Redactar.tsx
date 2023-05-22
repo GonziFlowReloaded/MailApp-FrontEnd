@@ -16,7 +16,7 @@ const Redactar = () => {
     e.preventDefault();
 
     if ([].includes("")) {
-      console.log("Todos los campos son obligatorios");
+      
       return;
     }
 
@@ -34,9 +34,9 @@ const Redactar = () => {
 
       navigate("/");
 
-      console.log(data);
+      
     } catch (error) {
-      console.log(error);
+      
     }
   };
   return (

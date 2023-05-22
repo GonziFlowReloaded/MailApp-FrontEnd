@@ -19,7 +19,7 @@ const Login = () => {
     e.preventDefault();
 
     if ([username, password].includes("")) {
-      console.log("Todos los campos son obligatorios");
+     
       return;
     }
 
@@ -35,13 +35,17 @@ const Login = () => {
 
       localStorage.setItem("nombre", data.nombre);
 
-      console.log(data);
+      if (localStorage.getItem("nombre") === null) {
+        navigate("/auth/login");
+
+        return;
+      }
       
 
       setAuth(data);
       navigate("/");
     } catch (error) {
-      console.log(error);
+     
     }
   };
 

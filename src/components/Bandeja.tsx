@@ -2,7 +2,7 @@
 
 import useMail from "../hooks/useMail";
 
-const Bandeja = (item: any) => {
+const Bandeja = ({item}) => {
   //@ts-ignore
   const { handleClickMensaje, mensajeActual } = useMail();
 
@@ -24,16 +24,16 @@ const Bandeja = (item: any) => {
             <div
               className={`w-10 h-10 flex justify-center items-center text-white font-semibold rounded-full mr-2 bg-violet-400 dark:bg-violet-400`}
             >
-              {item?.sender?.[0]}
-              {item?.sender?.[1]}
+              {item.sender?.[0]}
+              {item.sender?.[1]}
             </div>
 
             <div className="flex flex-col">
               <span className="text-sm font-semibold text-gray-700 dark:text-white">
-                {item?.sender}
+                {item.sender}
               </span>
               <span className="text-xs text-gray-400 dark:text-gray-300">
-                {item?.date}
+                {item.date}
               </span>
             </div>
           </div>
@@ -41,15 +41,15 @@ const Bandeja = (item: any) => {
 
         <div className="">
           <p className="text-lg  font-semibold px-4 py-2 text-gray-700 dark:text-white text-left">
-            {item?.subject}
+            {item.subject}
           </p>
         </div>
 
         <div className=" ">
           <p className="text-sm font-semibold text-gray-400 px-4 py-2 dark:text-gray-300 text-left ">
-            {item?.body?.length > 10
-              ? item?.body?.slice(0, 100) + "..."
-              : item?.body}
+            {item.body?.length > 10
+              ? item.body?.slice(0, 100) + "..."
+              : item.body}
           </p>
         </div>
       </div>

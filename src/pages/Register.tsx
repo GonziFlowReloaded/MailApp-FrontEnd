@@ -1,8 +1,9 @@
 //@ts-nocheck
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+
 
 
 const Register = () => {
@@ -12,16 +13,18 @@ const Register = () => {
   const [repeatPassword, setRepeatPassword] = useState("");
   const [alerta, setAlerta] = useState("");
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if ([username, password, repeatPassword].includes("")) {
-      console.log("Todos los campos son obligatorios");
+     
       return;
     }
 
     if (password !== repeatPassword) {
-      console.log("Las contraseñas no coinciden");
+      
       return;
     }
 
@@ -35,17 +38,21 @@ const Register = () => {
         }
       );
 
-      console.log(data);
+    
 
-      setAlerta(data.status);
+
+
+     
 
       setUsername("");
       setPassword("");
       setRepeatPassword("");
 
+      navigate("/auth/login");
+
       
     } catch (error) {
-      console.log(error);
+     
     }
   };
   return (
