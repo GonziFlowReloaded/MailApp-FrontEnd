@@ -3,10 +3,13 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import { Alert, Space } from "antd";
 
 const Mensaje = ({ mensajeActual }) => {
   const navigate = useNavigate();
   const [deleted, setDeleted] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [aviso, setAviso] = useState("");
 
   console.log(mensajeActual);
 
@@ -40,7 +43,14 @@ const Mensaje = ({ mensajeActual }) => {
         }
       );
 
-      console.log(data);
+      setShowAlert(true);
+      setAviso(data.status);
+
+      setTimeout(() => {
+        setShowAlert(false);
+        setAviso("");
+        navigate("/");
+      }, 2000);
     } catch (error) {
       console.log(error);
     }
@@ -76,6 +86,11 @@ const Mensaje = ({ mensajeActual }) => {
   }
   return (
     <div className="flex-1 m-5 bg-white rounded-2xl shadow-md dark:bg-gray-800 transition duration-500 ease-in-out p-5">
+      {showAlert && (
+        <Space direction="vertical">
+          <Alert message={aviso} type="success" />
+        </Space>
+      )}
       <div className="flex justify-between items-center px-4 py-2">
         <div className="flex items-center">
           <div

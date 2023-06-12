@@ -7,10 +7,12 @@ const Sidebar = () => {
     localStorage.removeItem("nombre");
     navigate("/auth/login");
   };
+
   return (
-    <aside className="bg-[#2e8efd] md:w-20 md:h-screen ">
-      <div className="px-4  ">
-        <div className="flex md:flex-col flex-row justify-between md:h-screen ">
+    <aside className="bg-[#2e8efd] md:w-20 md:h-screen">
+      <div className="px-4">
+        <div className="flex md:flex-col flex-row justify-between md:h-screen">
+          {/* Menú lateral */}
           <div className="flex md:flex-col gap-10 py-10">
             <Link to="/redactar">
               <svg
@@ -44,7 +46,6 @@ const Sidebar = () => {
                 />
               </svg>
             </Link>
-
             <Link to="/contactos">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -63,13 +64,15 @@ const Sidebar = () => {
             </Link>
           </div>
 
-          <div className="flex flex-col items-center font-bold text-3xl text-white">
+          {/* Logo en el centro */}
+          <div className="flex flex-col items-center font-bold text-3xl text-white hidden md:flex">
             <p>F</p>
             <p>A</p>
             <p>S</p>
             <p>S</p>
           </div>
 
+          {/* Ajustes y Cerrar sesión */}
           <div className="flex md:flex-col gap-10 py-10">
             <Link to="/ajustes">
               <svg

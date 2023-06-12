@@ -7,7 +7,7 @@ function TextEditor({value, setValue}) {
 
   console.log(value);
 
-  return <ReactQuill theme="snow" value={value} onChange={setValue} className='h-[300px]' />;
+  return <ReactQuill theme="snow" value={value} onChange={setValue} className='h-[200px] dark:bg-gray-800 dark:text-white' />;
 }
 
 export default TextEditor;

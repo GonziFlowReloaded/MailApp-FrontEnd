@@ -4,26 +4,36 @@ const Ajustes = () => {
   const [theme, setTheme] = useState(null);
 
   useEffect(() => {
-  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       setTheme("dark");
     } else {
       setTheme("light");
     }
   }, []);
 
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    localStorage.theme = theme;
+  }, [theme]);
+
   const handleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <h1 className="text-3xl font-bold text-center text-[#2e8efd] mt-5">
         Ajustes del usuario
       </h1>
 
-      <button className="bg-green-300 p-4 rounded-3xl mt-5" onClick={handleTheme}>
-        Dark Mode
-      </button>
+      <div className="mt-5">
+        <button
+          className="bg-green-300 p-4 rounded-3xl"
+          onClick={handleTheme}
+        >
+          {theme === "dark" ? "Light Mode" : "Dark Mode"}
+        </button>
+      </div>
     </div>
   );
 };
