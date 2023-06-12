@@ -23,6 +23,8 @@ const router = createBrowserRouter([
         element: <Redactar/>,
       },
 
+   
+
       {
         path: "/contactos",
         element: <Contactos />,

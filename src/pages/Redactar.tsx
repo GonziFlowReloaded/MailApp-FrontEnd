@@ -3,11 +3,22 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import TextEditor from "../components/TextEditor";
 
 const Redactar = () => {
   const [mail, setMail] = useState("");
   const [subject, setsubject] = useState("");
   const [body, setBody] = useState("");
+  const [value, setValue] = useState('');
+
+
+
+
+ 
+
+
 
   const navigate = useNavigate();
 
@@ -16,7 +27,6 @@ const Redactar = () => {
     e.preventDefault();
 
     if ([].includes("")) {
-      
       return;
     }
 
@@ -27,17 +37,13 @@ const Redactar = () => {
         {
           mail,
           subject,
-          body,
+          body: value,
           nombre,
         }
       );
 
       navigate("/");
-
-      
-    } catch (error) {
-      
-    }
+    } catch (error) {}
   };
   return (
     <div className="h-screen overflow-hidden p-10">
@@ -56,7 +62,6 @@ const Redactar = () => {
               onChange={(e) => setMail(e.target.value)}
             />
           </div>
-
           <div className="flex mt-5 gap-5 items-center">
             <input
               placeholder="Asunto:"
@@ -67,16 +72,11 @@ const Redactar = () => {
             />
           </div>
 
-          <div className="flex flex-col justify-center mt-5 gap-5 ">
-            <textarea
-              placeholder="Escriba el mensaje"
-              className="border-0 w-full h-96 border-gray-300 rounded-md px-3 py-2 mt-1 focus:outline-none   focus:border-transparent dark:bg-gray-800 dark:text-white"
-              value={body}
-              onChange={(e) => setBody(e.target.value)}
-            ></textarea>
+          <div className="mt-10">
+            <TextEditor value={value} setValue={setValue} />
           </div>
 
-          <div className="flex justify-center mt-10">
+          <div className="flex justify-center mt-[50px] gap-5 items-center" >
             <button
               className="bg-[#2e8efd] w-1/4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-2xl focus:outline-none focus:shadow-outline"
               type="submit"

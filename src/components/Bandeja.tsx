@@ -1,10 +1,34 @@
-//@ts-ignore
+//@ts-nocheck
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 import useMail from "../hooks/useMail";
 
-const Bandeja = ({item}) => {
-  //@ts-ignore
-  const { handleClickMensaje, mensajeActual } = useMail();
+const Bandeja = ({ item, handleClickMensaje }) => {
+  const [bandeja, setBandeja] = useState([]);
+  const [mensajeActual, setMensajeActual] = useState({});
+  
+
+  useEffect(() => {
+    const getBandeja = async () => {
+      try {
+        const { data } = await axios.post(`${import.meta.env.VITE_URL}/buzon`, {
+          nombre: localStorage.getItem("nombre"),
+        });
+
+        setBandeja(data.emails);
+        setMensajeActual(data.emails[0]);
+
+        
+      } catch (error) {}
+    };
+
+    getBandeja();
+  }, []);
+
+
 
   return (
     <button
@@ -45,12 +69,11 @@ const Bandeja = ({item}) => {
           </p>
         </div>
 
-        <div className=" ">
-          <p className="text-sm font-semibold text-gray-400 px-4 py-2 dark:text-gray-300 text-left ">
-            {item.body?.length > 10
-              ? item.body?.slice(0, 100) + "..."
-              : item.body}
-          </p>
+        <div className="">
+          <p
+            dangerouslySetInnerHTML={{ __html: item.body }}
+            className="text-sm font-semibold text-gray-400 px-4 py-2 dark:text-gray-300 text-left"
+          ></p>
         </div>
       </div>
     </button>

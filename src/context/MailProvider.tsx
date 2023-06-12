@@ -19,14 +19,10 @@ const MailProvider = ({ children }: any) => {
           nombre: localStorage.getItem("nombre"),
         });
 
-       
-
-      
-          setBandeja(data.emails);
-          setMensajeActual(data.emails[0]);
-        
+        setBandeja(data.emails);
+        setMensajeActual(data.emails[0]);
       } catch (error) {
-       
+        // Manejo de errores
       }
     };
 

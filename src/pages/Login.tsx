@@ -35,12 +35,7 @@ const Login = () => {
 
       localStorage.setItem("nombre", data.nombre);
 
-      if (localStorage.getItem("nombre") === null) {
-        navigate("/auth/login");
 
-        return;
-      }
-      
 
       setAuth(data);
       navigate("/");

@@ -1,7 +1,78 @@
 //@ts-nocheck
+
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
+
 const Mensaje = ({ mensajeActual }) => {
+  const navigate = useNavigate();
+  const [deleted, setDeleted] = useState(false);
+
+  console.log(mensajeActual);
+
+  const extractNameFromEmail = (email) => {
+    const atIndex = email.indexOf("@");
+    if (atIndex !== -1) {
+      return email.substring(0, atIndex);
+    }
+    return email;
+  };
+
+  const addContato = async () => {
+    const nombre = localStorage.getItem("nombre");
+    const mail_contacto = mensajeActual.sender;
+    const nombre_contacto = extractNameFromEmail(mensajeActual.sender);
+
+    console.log(nombre, mail_contacto, nombre_contacto);
+
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_URL}/contactos_add`,
+        {
+          nombre,
+          nombre_contacto,
+          mail_contacto,
+        },
+        {
+          headers: {
+            contentType: "application/json",
+          },
+        }
+      );
+
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDelete = async () => {
+    const messageId = Number(mensajeActual.id);
+
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_URL}/buzon/delete/${messageId}`,
+        {
+          messageId,
+          nombre: localStorage.getItem("nombre"),
+        },
+        {
+          headers: {
+            contentType: "application/json",
+          },
+        }
+      );
+
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   if (!mensajeActual) {
-    return <div className="text-xl font-semibold text-gray-800">No hay mensajes</div>;
+    return (
+      <div className="text-xl font-semibold text-gray-800">No hay mensajes</div>
+    );
   }
   return (
     <div className="flex-1 m-5 bg-white rounded-2xl shadow-md dark:bg-gray-800 transition duration-500 ease-in-out p-5">
@@ -29,7 +100,8 @@ const Mensaje = ({ mensajeActual }) => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-6 h-6 text-violet-400 cursor-pointer"
+            className="w-6 h-6 text-blue-400 cursor-pointer"
+            onClick={addContato}
           >
             <path
               strokeLinecap="round"
@@ -59,7 +131,8 @@ const Mensaje = ({ mensajeActual }) => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-6 h-6 text-violet-400 cursor-pointer"
+            className="w-6 h-6 text-red-400 cursor-pointer"
+            onClick={handleDelete}
           >
             <path
               strokeLinecap="round"
@@ -80,9 +153,10 @@ const Mensaje = ({ mensajeActual }) => {
       </div>
 
       <div className="px-4 py-2">
-        <p className="text-sm font-semibold text-gray-800 px-4 py-2 dark:text-white">
-          {mensajeActual?.body}
-        </p>
+        <div
+          dangerouslySetInnerHTML={{ __html: mensajeActual?.body }}
+          className="prose"
+        ></div>
       </div>
       <p className=" flex items-center text-sm font-semibold text-blue-400 px-4 py-2">
         <svg
